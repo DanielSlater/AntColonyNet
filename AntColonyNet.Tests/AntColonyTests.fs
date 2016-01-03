@@ -27,7 +27,7 @@ let ``straight line has clear best answer`` () =
     let startCity = cities |> Seq.head
     let antFunc (_ : unit) =
         SalesmanAnt(travelDict, startCity) :> Ant<TravelToCity>
-    let trailSystem = AntSystemTrailSystem<TravelToCity>(1.5, 1.0, 0.5, 0.1)
+    let trailSystem = AntColonyTrailSystem<TravelToCity>(1.5, 1.0, 0.5, 0.1)
     let result = Optimize antFunc 50 50 trailSystem |> Seq.toList
     printfn "%A" result
     for i in 0..(cities.Length-2) do
@@ -51,7 +51,7 @@ let ``travelling salesman`` () =
     let startCity = cities |> Seq.head
     let antFunc (_ : unit) =
         SalesmanAnt(travelDict, startCity) :> Ant<TravelToCity>
-    let trailSystem = AntSystemTrailSystem<TravelToCity>(1.0, 1.0, 1.0, 1.0)
+    let trailSystem = AntColonyTrailSystem<TravelToCity>(1.0, 1.0, 1.0, 1.0)
     let result = Optimize antFunc 50 50 trailSystem
     printfn "%A" result
     ()
